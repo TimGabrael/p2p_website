@@ -20,76 +20,77 @@ function getDate() {
     return date.toISOString().split('T')[0];
 }
 
-const crosswordData = {
-  id: 19199,
-  crosswords: {
-    no: "019199",
-    difficulty: 3,
-    created: "2025-04-02",
-    start: "2025-05-31",
-    partner: "spiegel.de",
-    cols: 9,
-    rows: 9,
-    clues: [
-      { id: 1, col: 0, row: 0, s: [0, 1], e: [8, 1], t: "Kräftigung" },
-      { id: 2, col: 0, row: 2, s: [1, 2], e: [4, 2], t: "dt. TV-\nKomiker\n(... \nDittrich)" },
-      { id: 3, col: 0, row: 3, s: [1, 3], e: [8, 3], t: "Anhänger\nder\nwestlichen\nStaatsform" },
-      { id: 4, col: 0, row: 4, s: [0, 5], e: [3, 5], t: "Schiffs-\nbesat-\nzung" },
-      { id: 5, col: 0, row: 7, s: [0, 6], e: [3, 6], t: "mexik.\nÖlsamen" },
-      { id: 6, col: 0, row: 8, s: [1, 8], e: [3, 8], t: "Ab-\nschieds-\ngruß" },
-      { id: 7, col: 1, row: 0, s: [1, 1], e: [1, 3], t: "letzte\nRuhe" },
-      { id: 8, col: 1, row: 4, s: [1, 5], e: [1, 8], t: "Mutter\ndes Zeus\n(griech.\nMytholog.)" },
-      { id: 9, col: 2, row: 0, s: [2, 1], e: [2, 6], t: "russ. Zar\n(1645/76)" },
-      { id: 10, col: 2, row: 7, s: [3, 7], e: [8, 7], t: "fahl,\nblass" },
-      { id: 11, col: 3, row: 0, s: [3, 1], e: [3, 3], t: "Höhen-\nzug bei\nBraun-\nschweig" },
-      { id: 12, col: 3, row: 4, s: [4, 4], e: [8, 4], t: "hühner-\ngroßer\nSumpf-\nvogel" },
-      { id: 13, col: 4, row: 5, s: [3, 5], e: [3, 8], t: "Wachs-\nzellen-\nbau der\nBienen" },
-      { id: 14, col: 4, row: 6, s: [5, 6], e: [8, 6], t: "ruhig,\nstill,\nmatt" },
-      { id: 15, col: 4, row: 8, s: [5, 8], e: [8, 8], t: "hoch-\nherzig,\nmenschl.\nvornehm" },
-      { id: 16, col: 5, row: 0, s: [4, 0], e: [4, 4], t: "Stellver-\ntreter\neines\nAbtes" },
-      { id: 17, col: 5, row: 2, s: [5, 3], e: [5, 8], t: "Aufguss-\ngetränk" },
-      { id: 18, col: 6, row: 5, s: [6, 6], e: [6, 8], t: "''Augen-\n deckel''" },
-      { id: 19, col: 7, row: 0, s: [6, 0], e: [6, 4], t: "Küchen-\ngerät\nzum\nVerrühren" },
-      { id: 20, col: 7, row: 2, s: [7, 3], e: [7, 8], t: "frz. Name\nfür das\nElsass" },
-      { id: 21, col: 8, row: 0, s: [8, 1], e: [8, 4], t: "Germane" },
-      { id: 22, col: 8, row: 5, s: [8, 6], e: [8, 8], t: "dt. Schau-\nspielerin\n(Nadja)" }
-    ],
-    solutions: [
-      { id: 1, col: 7, row: 7 },
-      { id: 2, col: 1, row: 6 },
-      { id: 3, col: 6, row: 2 },
-      { id: 4, col: 3, row: 3 },
-      { id: 5, col: 2, row: 1 },
-      { id: 6, col: 3, row: 8 },
-      { id: 7, col: 4, row: 4 },
-      { id: 8, col: 5, row: 8 }
-    ],
-    solved: [
-      ["", "", "", "", "P", "", "Q", "", ""],
-      ["S", "T", "A", "E", "R", "K", "U", "N", "G"],
-      ["", "O", "L", "L", "I", "", "I", "", "O"],
-      ["", "D", "E", "M", "O", "K", "R", "A", "T"],
-      ["", "", "X", "", "R", "A", "L", "L", "E"],
-      ["C", "R", "E", "W", "", "F", "", "S", ""],
-      ["C", "H", "I", "A", "", "F", "L", "A", "U"],
-      ["", "E", "", "B", "L", "E", "I", "C", "H"],
-      ["", "A", "D", "E", "", "E", "D", "E", "L"]
-    ],
-    letters: [],
-    import_file_date: "2025-03-18",
-    import_file_time: "11:58:42:0",
-    import_file_name: "fcs/spiegel/2025-03-31/11903_11933_spiegel_9x9_d4_DE/crossword_11933_raetsel4u_kr3m_spiegel_9x9_d4_DE.fcs",
-    converted_file_date: "2025-04-02",
-    converted_file_time: "09:16:16:6",
-    licensed_for: "spiegel.de",
-    words: 22,
-    solution_word: "CHIMAERE",
-    empty_fields: 0,
-    double_challenges: 0,
-    converter_version: "0.0.11",
-    supplier: "raetsel4u"
-  }
-};
+// example one not used anymore
+//const crosswordData = {
+//  id: 19199,
+//  crosswords: {
+//    no: "019199",
+//    difficulty: 3,
+//    created: "2025-04-02",
+//    start: "2025-05-31",
+//    partner: "spiegel.de",
+//    cols: 9,
+//    rows: 9,
+//    clues: [
+//      { id: 1, col: 0, row: 0, s: [0, 1], e: [8, 1], t: "Kräftigung" },
+//      { id: 2, col: 0, row: 2, s: [1, 2], e: [4, 2], t: "dt. TV-\nKomiker\n(... \nDittrich)" },
+//      { id: 3, col: 0, row: 3, s: [1, 3], e: [8, 3], t: "Anhänger\nder\nwestlichen\nStaatsform" },
+//      { id: 4, col: 0, row: 4, s: [0, 5], e: [3, 5], t: "Schiffs-\nbesat-\nzung" },
+//      { id: 5, col: 0, row: 7, s: [0, 6], e: [3, 6], t: "mexik.\nÖlsamen" },
+//      { id: 6, col: 0, row: 8, s: [1, 8], e: [3, 8], t: "Ab-\nschieds-\ngruß" },
+//      { id: 7, col: 1, row: 0, s: [1, 1], e: [1, 3], t: "letzte\nRuhe" },
+//      { id: 8, col: 1, row: 4, s: [1, 5], e: [1, 8], t: "Mutter\ndes Zeus\n(griech.\nMytholog.)" },
+//      { id: 9, col: 2, row: 0, s: [2, 1], e: [2, 6], t: "russ. Zar\n(1645/76)" },
+//      { id: 10, col: 2, row: 7, s: [3, 7], e: [8, 7], t: "fahl,\nblass" },
+//      { id: 11, col: 3, row: 0, s: [3, 1], e: [3, 3], t: "Höhen-\nzug bei\nBraun-\nschweig" },
+//      { id: 12, col: 3, row: 4, s: [4, 4], e: [8, 4], t: "hühner-\ngroßer\nSumpf-\nvogel" },
+//      { id: 13, col: 4, row: 5, s: [3, 5], e: [3, 8], t: "Wachs-\nzellen-\nbau der\nBienen" },
+//      { id: 14, col: 4, row: 6, s: [5, 6], e: [8, 6], t: "ruhig,\nstill,\nmatt" },
+//      { id: 15, col: 4, row: 8, s: [5, 8], e: [8, 8], t: "hoch-\nherzig,\nmenschl.\nvornehm" },
+//      { id: 16, col: 5, row: 0, s: [4, 0], e: [4, 4], t: "Stellver-\ntreter\neines\nAbtes" },
+//      { id: 17, col: 5, row: 2, s: [5, 3], e: [5, 8], t: "Aufguss-\ngetränk" },
+//      { id: 18, col: 6, row: 5, s: [6, 6], e: [6, 8], t: "''Augen-\n deckel''" },
+//      { id: 19, col: 7, row: 0, s: [6, 0], e: [6, 4], t: "Küchen-\ngerät\nzum\nVerrühren" },
+//      { id: 20, col: 7, row: 2, s: [7, 3], e: [7, 8], t: "frz. Name\nfür das\nElsass" },
+//      { id: 21, col: 8, row: 0, s: [8, 1], e: [8, 4], t: "Germane" },
+//      { id: 22, col: 8, row: 5, s: [8, 6], e: [8, 8], t: "dt. Schau-\nspielerin\n(Nadja)" }
+//    ],
+//    solutions: [
+//      { id: 1, col: 7, row: 7 },
+//      { id: 2, col: 1, row: 6 },
+//      { id: 3, col: 6, row: 2 },
+//      { id: 4, col: 3, row: 3 },
+//      { id: 5, col: 2, row: 1 },
+//      { id: 6, col: 3, row: 8 },
+//      { id: 7, col: 4, row: 4 },
+//      { id: 8, col: 5, row: 8 }
+//    ],
+//    solved: [
+//      ["", "", "", "", "P", "", "Q", "", ""],
+//      ["S", "T", "A", "E", "R", "K", "U", "N", "G"],
+//      ["", "O", "L", "L", "I", "", "I", "", "O"],
+//      ["", "D", "E", "M", "O", "K", "R", "A", "T"],
+//      ["", "", "X", "", "R", "A", "L", "L", "E"],
+//      ["C", "R", "E", "W", "", "F", "", "S", ""],
+//      ["C", "H", "I", "A", "", "F", "L", "A", "U"],
+//      ["", "E", "", "B", "L", "E", "I", "C", "H"],
+//      ["", "A", "D", "E", "", "E", "D", "E", "L"]
+//    ],
+//    letters: [],
+//    import_file_date: "2025-03-18",
+//    import_file_time: "11:58:42:0",
+//    import_file_name: "fcs/spiegel/2025-03-31/11903_11933_spiegel_9x9_d4_DE/crossword_11933_raetsel4u_kr3m_spiegel_9x9_d4_DE.fcs",
+//    converted_file_date: "2025-04-02",
+//    converted_file_time: "09:16:16:6",
+//    licensed_for: "spiegel.de",
+//    words: 22,
+//    solution_word: "CHIMAERE",
+//    empty_fields: 0,
+//    double_challenges: 0,
+//    converter_version: "0.0.11",
+//    supplier: "raetsel4u"
+//  }
+//};
 
 const usernameInput = document.getElementById('username');
 const hostIdInputClient = document.getElementById('hostIdInputClient');
@@ -116,12 +117,12 @@ localMovement = new CrosswordMovement();
 
 usernameInput.value = randomName();
 loadSpiegelBtn.addEventListener('click', (event) => {
-    fetch(`https://spiele.spiegel.de/games/spiegel_Crosswords/js/data/levels/c003/${dateInput.value}_9x9.json?_=1.14.112`)
+    fetch(`https://raw.githubusercontent.com/TimGabrael/fetch_ci/refs/heads/master/spiegel/${dateInput.value}.json`)
     .then(response => {
         if(!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json;
+        return response.json();
     }).then(data => {
         crosswordGame = new Crossword("spiegel", data);
     });
@@ -135,6 +136,11 @@ let hostConn = null;
 
 class Crossword {
     constructor(origin, data) {
+        crosswordContainer.innerHTML = '';
+        crosswordHintsContainer.innerHTML = '';
+        localMovement.curClueIdx = -1;
+        localMovement.stepIdx = -1;
+        
         this.cols = 0;
         this.rows = 0;
         this.clues = [];
@@ -145,6 +151,8 @@ class Crossword {
         if(origin == "spiegel") {
             this.initialize_from_spiegel(data);
         }
+
+        sendInfoRequest();
     }
     initialize_from_spiegel(data) {
         this.difficulty = data.crosswords.difficulty;
@@ -290,7 +298,7 @@ class Crossword {
                                 newClueIdx = this.clues.length - 1;
                             }
                         }
-                        this.setMovementFromClue(newClueIdx, 0);
+                        this.setMovementFromClue(newClueIdx);
                         return;
                     }
 
@@ -305,7 +313,6 @@ class Crossword {
                     }
                     event.target.value = code;
                     if(this.filledInEverything()) {
-                        console.log("something");
                         if(this.everythingIsCorrect()) {
                             alert("CORRECT!!!");
                         }
@@ -347,7 +354,7 @@ class Crossword {
             text.className = '';
             text.dataset.index = clue.id;
             text.addEventListener('click', (event) => {
-                this.setMovementFromClue(event.target.dataset.index, 0);
+                this.setMovementFromClue(event.target.dataset.index);
                 this.updateHighlightingFromMovement();
             });
             crosswordHintsContainer.appendChild(text);
@@ -387,7 +394,7 @@ class Crossword {
             }
         }
     }
-    setMovementFromClue(clueId, stepIdx) {
+    setMovementFromClue(clueId) {
         for(const clue of this.clues) {
             if(clue.id == clueId) {
                 const deltaX = clue.end[0] - clue.start[0];
@@ -395,17 +402,21 @@ class Crossword {
                 const dx = Math.min(deltaX, 1);
                 const dy = Math.min(deltaY, 1);
                 const steps = Math.max(deltaX, deltaY) + 1;
-                if(stepIdx < steps && stepIdx > -1) {
-                    localMovement.curClueIdx = clue.id;
-                    localMovement.stepIdx = stepIdx;
-                    const elemId = (clue.start[1] + dy * stepIdx) * this.rows + clue.start[0] + dx * stepIdx;
+                for(let i = 0; i < steps; i++) {
+                    const elemId = (clue.start[1] + dy * i) * this.rows + clue.start[0] + dx * i;
                     const inputText = crosswordContainer.querySelector(`input[data-index="${elemId}"]`);
-                    if(inputText) {
-                        inputText.focus();
+                    if(inputText && (inputText.value == '' || i == (steps - 1))) {
+                        localMovement.curClueIdx = clueId;
+                        localMovement.stepIdx = i;
+                        
+                        if(inputText) {
+                            inputText.focus();
+                        }
+                        this.updateHighlightingFromMovement();
+                        return true;
                     }
-                    this.updateHighlightingFromMovement();
-                    return true;
                 }
+                break;
             }
         }
         return false;
@@ -516,7 +527,7 @@ class Crossword {
         return null;
     }
 };
-crosswordGame = new Crossword("spiegel", crosswordData);
+crosswordGame = {};//new Crossword("spiegel", crosswordData);
 
 
 
@@ -556,13 +567,22 @@ function sendChangeElement(senderId, elemId, newVal) {
         }],
         from: senderId,
     };
-    console.log("sending");
     if (!isHost && hostConn && hostConn.open) {
         hostConn.send(data);
     }
     else if(isHost) {
         broadcastFromHost(senderId, data);
     }
+}
+function sendInfoRequest() {
+    data = {
+        type: 'info_req',
+        from: peer.id,
+    };
+    if (!isHost && hostConn && hostConn.open) {
+        hostConn.send(data);
+    }
+
 }
 
 function receiveChange(data) {
@@ -579,7 +599,6 @@ function receiveChange(data) {
         }
     }
     if(crosswordGame.filledInEverything()) {
-        console.log("something");
         if(crosswordGame.everythingIsCorrect()) {
             alert("CORRECT!!!");
         }
@@ -588,7 +607,39 @@ function receiveChange(data) {
             crosswordGame.markAllWrong();
         }
     }
+}
+function hostSendProgress(reqId) {
+    let elemValues = [];
+    for(const elem of crosswordContainer.children) {
+        elemValues.push({id: elem.dataset.index, val: elem.value});
+    }
+    const data = {
+        type: 'progress',
+        data: elemValues,
+        from: peer.id,
+    };
+    connections[reqId].send(data);
 
+}
+function clientReceiveProgress(data) {
+    for(const elem of crosswordContainer.children) {
+        for(const d of data.data) {
+            if(elem.dataset.index == d.id) {
+                elem.value = d.val;
+                elem.classList.remove("wrong-info");
+                break;
+            }
+        }
+    }
+    if(crosswordGame.filledInEverything()) {
+        if(crosswordGame.everythingIsCorrect()) {
+            alert("CORRECT!!!");
+        }
+        else {
+            alert("WRONG");
+            crosswordGame.markAllWrong();
+        }
+    }
 }
 
 startHostBtn.onclick = () => {
@@ -617,6 +668,9 @@ startHostBtn.onclick = () => {
             }
             else if(data.type === 'change') {
                 receiveChange(data);
+            }
+            else if(data.type === 'info_req') {
+                hostSendProgress(data.from);
             }
         });
 
@@ -663,6 +717,9 @@ connectHostBtn.onclick = () => {
             else if(data.type === 'change' && data.from !==  peer.id) {
                 receiveChange(data);
             }
+            else if(data.type === 'progress' && data.from !==  peer.id) {
+                clientReceiveProgress(data);
+            }
         });
 
         hostConn.on('close', () => {
@@ -670,6 +727,12 @@ connectHostBtn.onclick = () => {
             loadSpiegelBtn.hidden = true;
             dateInput.hidden = true;
         });
+    });
+    peer.on('error', (_) => {
+        if (window.location.search.includes('host_id=')) {
+            const cleanURL = window.location.origin + window.location.pathname;
+            window.location.replace(cleanURL);
+        }
     });
 
     startHostBtn.disabled = true;
