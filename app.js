@@ -99,10 +99,13 @@ const connectHostBtn = document.getElementById('connectHostBtn');
 const chat = document.getElementById('chat');
 const loadSpiegelBtn = document.getElementById('loadSpiegelBtn');
 const loadSueddeutscheBtn = document.getElementById('loadSueddeutscheBtn');
-const loadNytBtn = document.getElementById('loadNytBtn');
+const loadNytBtnMini = document.getElementById('loadNytBtnMini');
+const loadNytBtnMidi = document.getElementById('loadNytBtnMidi');
+const loadNytBtnDaily = document.getElementById('loadNytBtnDaily');
 const dateInput = document.getElementById('dateInput');
 const crosswordContainer = document.getElementById('crosswordContainer');
 const crosswordHintsContainer = document.getElementById('crosswordHintsContainer');
+const crosswordCurrent = document.getElementById('crosswordCurrent');
 const hostControls = document.getElementById('hostControls');
 const clientControls = document.getElementById('clientControls');
 
@@ -126,7 +129,14 @@ loadSpiegelBtn.addEventListener('click', (event) => {
         }
         return response.json();
     }).then(data => {
-        crosswordGame = new Crossword("spiegel", data);
+        let dateArr = dateInput.value.split("-").map(Number)
+        if(dateArr[0] < 2026 || (dateArr[0] == 2026 && dateArr[1] < 1) || (dateArr[0] == 2026 && dateArr[1] == 1 && dateArr[2] < 7)) {
+            // old crossword format
+            crosswordGame = new Crossword("spiegel", data);
+        }
+        else {
+            crosswordGame = new Crossword("spiegelNew", data);
+        }
     });
 });
 loadSueddeutscheBtn.addEventListener('click', (event) => {
@@ -229,8 +239,30 @@ loadSueddeutscheBtn.addEventListener('click', (event) => {
         crosswordGame = new Crossword("sueddeutsche", variable);
     });
 });
-loadNytBtn.addEventListener('click', (event) => {
-    fetch(`https://raw.githubusercontent.com/TimGabrael/fetch_ci/refs/heads/master/nyt/${dateInput.value}.json`)
+loadNytBtnMini.addEventListener('click', (event) => {
+    fetch(`https://raw.githubusercontent.com/TimGabrael/fetch_ci/refs/heads/master/nyt/mini/${dateInput.value}.json`)
+    .then(response => {
+        if(!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }).then(data => {
+        crosswordGame = new Crossword("nyt", data.body[0]);
+    });
+});
+loadNytBtnMidi.addEventListener('click', (event) => {
+    fetch(`https://raw.githubusercontent.com/TimGabrael/fetch_ci/refs/heads/master/nyt/midi/${dateInput.value}.json`)
+    .then(response => {
+        if(!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }).then(data => {
+        crosswordGame = new Crossword("nyt", data.body[0]);
+    });
+});
+loadNytBtnDaily.addEventListener('click', (event) => {
+    fetch(`https://raw.githubusercontent.com/TimGabrael/fetch_ci/refs/heads/master/nyt/daily/${dateInput.value}.json`)
     .then(response => {
         if(!response.ok) {
             throw new Error('Network response was not ok');
@@ -251,6 +283,8 @@ class Crossword {
     constructor(origin, data) {
         crosswordContainer.innerHTML = '';
         crosswordHintsContainer.innerHTML = '';
+        crosswordCurrent.textContent = '';
+        crosswordCurrent.hidden = true;
         localMovement.curClueIdx = -1;
         localMovement.stepIdx = -1;
         
@@ -263,6 +297,9 @@ class Crossword {
         this.solved = [];
         if(origin == "spiegel") {
             this.initialize_from_spiegel(data);
+        }
+        else if(origin == "spiegelNew") {
+            this.initialize_from_spiegel_new(data);
         }
         else if(origin == "sueddeutsche") {
             this.initialize_from_sueddeutsche(data);
@@ -287,6 +324,7 @@ class Crossword {
         for(const clue of data.crosswords.clues) {
             const myClue = {
                 id: id_counter,
+                label: id_counter + ":",
                 col: clue.col,
                 row: clue.row,
                 start: clue.s,
@@ -301,6 +339,58 @@ class Crossword {
                 this.solved.push(elem);
             }
         }
+    }
+    initialize_from_spiegel_new(data) {
+        data = data.data.riddle.payload;
+        this.difficulty = 0;
+        this.created = 0;
+        this.cols = data.width;
+        this.rows = data.height;
+        this.clues = [];
+        this.solved = [];
+        let solutionItems = [];
+        let id_counter = 0;
+        for(const elem of data.grid) {
+            if(elem.type === "question") {
+                // for some reason x,y are swapped
+                for(let i = 0; i < elem.connections.length; ++i) {
+                    let start = elem.connections[i].list[0].reverse();
+                    let end = elem.connections[i].list[elem.connections[i].list.length - 1].reverse();
+                    const myClue = {
+                        id: id_counter,
+                        label: id_counter + ":",
+                        col: start[0],
+                        row: start[1],
+                        start: start,
+                        end: end,
+                        text: elem.items[i].value.replaceAll('+','\n'),
+                    };
+                    this.clues.push(myClue);
+                    id_counter += 1;
+                }
+                this.solved.push('');
+            }
+            else if(elem.type === "answer") {
+                let isSolutionElement = -1;
+                let squareValue = '';
+                for(const item of elem.items) {
+                    if(item.type == "value") {
+                        squareValue = item.value;
+                        this.solved.push(item.value);
+                    }
+                    else if(item.type == "solutionNumber") {
+                        isSolutionElement = parseInt(item.value);
+                    }
+                }
+                if(isSolutionElement != -1) {
+                    solutionItems.push({
+                        index: isSolutionElement, 
+                        value: squareValue, 
+                    })
+                }
+            }
+        }
+        this.solution_word = solutionItems.sort().map(item => item.value).join('');
     }
     initialize_from_sueddeutsche(data) {
         this.difficulty = 0;
@@ -385,6 +475,7 @@ class Crossword {
 
                         const myClue = {
                             id: id_counter,
+                            label: id_counter + ":",
                             col: 0, // unused
                             row: 0, // unused
                             start: start,
@@ -431,6 +522,7 @@ class Crossword {
 
             const myClue = {
                 id: id_counter,
+                label: clue.label + " " + clue.direction + ":\n",
                 col: 0, // unused
                 row: 0, // unused
                 start: [sx, sy],
@@ -445,7 +537,7 @@ class Crossword {
     }
     generate() {
         crosswordContainer.innerHTML = '';
-        const squareSize = 80;
+        const squareSize = 60;
         crosswordContainer.style.width = `${this.cols * squareSize}`;
         crosswordContainer.style.height = `${this.rows * squareSize}`;
         crosswordContainer.style.display = 'grid';
@@ -625,11 +717,11 @@ class Crossword {
         //}
         for(const clue of this.clues) {
             const text = document.createElement('div');
-            text.innerText = clue.id + ". " + clue.text;
+            text.innerText = clue.label + " " + clue.text;
             text.className = '';
             text.dataset.index = clue.id;
             text.addEventListener('click', (event) => {
-                this.setMovementFromClue(event.target.dataset.index);
+                this.setMovementFromClue(Number(event.target.dataset.index));
                 this.updateHighlightingFromMovement();
             });
             crosswordHintsContainer.appendChild(text);
@@ -722,11 +814,14 @@ class Crossword {
         for(const child of crosswordHintsContainer.children) {
             child.className = '';
         }
+        crosswordCurrent.hidden = true;
         for(const clue of this.clues) {
             if(localMovement.curClueIdx == clue.id) {
                 const clueText = crosswordHintsContainer.querySelector(`div[data-index="${clue.id}"]`);
                 if(clueText) {
                     clueText.classList.add('highlight-text');
+                    crosswordCurrent.hidden = false;
+                    crosswordCurrent.textContent = clueText.textContent;
                 }
 
                 const deltaX = clue.end[0] - clue.start[0];
@@ -737,6 +832,14 @@ class Crossword {
                 for(let i = 0; i < steps; i++) {
                     let curId = (clue.start[1] + dy * i) * this.cols + (clue.start[0] + dx * i);
                     const inputText = crosswordContainer.querySelector(`input[data-index="${curId}"]`);
+                    if(i == 0) {
+                        const rect = inputText.getBoundingClientRect();
+                        const parentRect = crosswordContainer.getBoundingClientRect();
+                        const curRect = crosswordCurrent.getBoundingClientRect();
+                        crosswordCurrent.style.position = 'absolute';
+                        crosswordCurrent.style.left = `${rect.left - parentRect.left}px`; 
+                        crosswordCurrent.style.top = `${rect.top - parentRect.top + 20 - curRect.height}px`;
+                    }
                     inputText.classList.add('green-border');
                 }
                 break;
@@ -841,7 +944,9 @@ function broadcastFromHost(senderId, data) {
 function enableChat() {
     loadSpiegelBtn.hidden = false;
     loadSueddeutscheBtn.hidden = false;
-    loadNytBtn.hidden = false;
+    loadNytBtnMini.hidden = false;
+    loadNytBtnMidi.hidden = false;
+    loadNytBtnDaily.hidden = false;
     dateInput.hidden = false;
     hostControls.style.display = 'none';
     clientControls.style.display = 'none';
@@ -1025,7 +1130,9 @@ connectHostBtn.onclick = () => {
             messageInput.disabled = true;
             loadSpiegelBtn.hidden = true;
             loadSueddeutscheBtn.hidden = true;
-            loadNytBtn.hidden = true;
+            loadNytBtnMini.hidden = true;
+            loadNytBtnMidi.hidden = true;
+            loadNytBtnDaily.hidden = true;
             dateInput.hidden = true;
         });
     });
