@@ -100,7 +100,6 @@ button:disabled, input:disabled {
 #crosswordCurrent {
     max-height: 100px;
     min-height: 100px;
-    width: 100%;
     color: gold;
     user-select: none;
     font-size: 20px;
@@ -115,3 +114,32 @@ button:disabled, input:disabled {
     color: red;
 }
 
+#finishInfo {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+
+    background: #222;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 40px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease,
+    transform 0.2s ease;
+
+    z-index: 9999;
+}
+#finishInfo.showCorrect {
+    opacity: 1;
+    background: lightgreen;
+    transform: translate(-50%, 0);
+}
+#finishInfo.showWrong {
+    opacity: 1;
+    background: red;
+    transform: translate(-50%, 0);
+}
